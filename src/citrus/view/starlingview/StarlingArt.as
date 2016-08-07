@@ -398,14 +398,29 @@ package citrus.view.starlingview {
 
 		public function update(stateView:ACitrusView):void {
 			if (_citrusObject.inverted) {
-
-				if (scaleX > 0)
+				
+				if (scaleX > 0) {
 					scaleX = -scaleX;
-
+					if (registration == "topLeft") {
+						_content.x = -_content.width;
+						_content.y = 0;
+					} else if (registration == "center") {
+						_content.x = -_content.width;
+						_content.y = -_content.height / 2;
+					}
+				}
 			} else {
-
-				if (scaleX < 0)
+				
+				if (scaleX < 0) {
 					scaleX = -scaleX;
+					if (registration == "topLeft") {
+						_content.x = 0;
+						_content.y = 0;
+					} else if (registration == "center") {
+						_content.x = -_content.width / 2;
+						_content.y = -_content.height / 2;
+					}
+				}
 			}
 
 			if (_content is StarlingPhysicsDebugView) {
